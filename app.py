@@ -26,10 +26,9 @@ config = {
         }
     },
     "embedder": {
-        "provider": "openai",
+        "provider": "huggingface",
         "config": {
-            "model": "text-embedding-3-small",
-            "api_key": os.getenv("OPENAI_API_KEY")
+            "model": "sentence-transformers/all-MiniLM-L6-v2"
         }
     }
 }
