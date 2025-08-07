@@ -9,30 +9,32 @@ chroma_client = chromadb.PersistentClient(path="/tmp/chroma")
 app = FastAPI()
 
 # Configure Mem0 with ChromaDB and environment variables
-config = {
-    "vector_store": {
-        "provider": "chroma",
-        "config": {
+from mem0 import MemoryConfig, VectorStoreConfig, LLMConfig, EmbedderConfig
+
+config = MemoryConfig(
+    vector_store=VectorStoreConfig(
+        provider="chroma",
+        config={
             "client": chroma_client,
             "collection_name": "mem0"
         }
-    },
-    "llm": {
-        "provider": "openai",
-        "config": {
+    ),
+    llm=LLMConfig(
+        provider="openai",
+        config={
             "model": "openai/gpt-4.1-nano-2025-04-14",
             "temperature": 0.2,
             "api_key": os.getenv("OPENAI_API_KEY")
         }
-    },
-    "embedder": {
-        "provider": "openai",
-        "config": {
+    ),
+    embedder=EmbedderConfig(
+        provider="openai",
+        config={
             "model": "text-embedding-3-small",
             "api_key": os.getenv("OPENAI_API_KEY")
         }
-    }
-}
+    )
+)
 
 m = Memory(config=config)
 
