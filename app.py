@@ -3,8 +3,8 @@ from fastapi import FastAPI
 import os
 import chromadb
 
-# Setup ChromaDB with persistent storage
-chroma_client = chromadb.PersistentClient(path="/data/chroma")
+# Setup ChromaDB with persistent storage (use /tmp for Render)
+chroma_client = chromadb.PersistentClient(path="/tmp/chroma")
 
 app = FastAPI()
 
