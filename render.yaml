@@ -12,3 +12,5 @@ services:
     envVars:
       - key: PYTHONPATH
         value: /opt/render/project/src
+      - key: OPENAI_API_KEY
+        value: your-openai-api-key-here
